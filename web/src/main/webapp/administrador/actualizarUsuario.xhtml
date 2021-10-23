@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xml:lang="en" lang="en">
+
+<ui:composition template="/WEB-INF/plantilla.xhtml">
+    <ui:define name="title">Usuario | Actualizar</ui:define>
+    <ui:define name="content">
+
+        <p:card styleClass="card"
+                style="margin-left: 30%; margin-right: 30%; margin-top: 2%; margin-bottom: 2%">
+            <f:facet name="title">
+                <font color="#34495E" >¡Actualice sus datos!</font>
+            </f:facet>
+
+            <p>Hola! en el siguiente formulario puedes indicarnos tus datos y actualizar tu usuario.</p>
+
+            <h:form>
+
+                <p>Ingrese el correo del usuario que desee modificar.</p>
+
+                <h:panelGrid columns="2" cellpadding="5" width="100%">
+
+                    <p:outputLabel for="nombre_usuario" value="Nombre:"/>
+                    <p:inputText id="nombre_usuario" value="#{administradorBean.usuario.nombre}" style="width: 100%"
+                                 required="true" requiredMessage="Ups! olvidaste el nombre de usuario"/>
+
+                    <p:outputLabel for="email_usuario" value="Email:"/>
+                    <p:inputText id="email_usuario" value="#{administradorBean.usuario.email}" style="width: 100%"
+                                 required="true"
+                                 requiredMessage="Ups! olvidaste el email"/>
+
+                    <p:outputLabel for="ciudad_usuario" value="Ciudad:"/>
+                    <p:selectOneMenu id="ciudad_usuario" value="#{administradorBean.usuario.ciudad}"
+                                     converter="#{ciudadConverter}"
+                                     redisplay="true" style="width: 100%" required="true"
+                                     requiredMessage="Ups! olvidaste seleccionar la ciudad">
+                        <f:selectItem itemLabel="Seleccione una ciudad" noSelectionOption="true"/>
+                        <f:selectItems var="ciudad" itemLabel="#{ciudad.nombre}" value="#{usuarioBean.ciudades}"/>
+                    </p:selectOneMenu>
+
+
+                    <p:outputLabel for="contrasenia_usuario" value="Contraseña:"/>
+                    <p:password id="contrasenia_usuario" value="#{administradorBean.usuario.password}"
+                                redisplay="true" style="width: 100%" required="true"
+                                requiredMessage="Ups! olvidaste la contraseña"/>
+
+                </h:panelGrid>
+                <div class="form-group row justify-content-center" style="margin: 5%">
+                    <div class="col">
+                        <p:commandButton action="#{administradorBean.actualizarUsuario}" value="Actualizar"
+                                         update="@form"
+                                         style="background: #34495E;width: 90%"/>
+                    </div>
+                    <div class="col">
+                        <p:button href="/index.xhtml" value="Volver" style="width: 90%;background: #34495E"/>
+                    </div>
+                </div>
+                <p:growl showDetail="true"/>
+            </h:form>
+
+        </p:card>
+    </ui:define>
+</ui:composition>
+
+</html>

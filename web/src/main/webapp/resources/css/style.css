@@ -1,0 +1,67 @@
+#header .btn-buscar {
+    color: #f8f9fa;
+    border-color: #f8f9fa;
+    background: none;
+}
+
+#header .btn-buscar.ui-state-hover {
+    color: black;
+    background: white;
+}
+
+.input-search {
+    width: 250px;
+}
+
+.ui-column-title {
+    text-align: center !important;
+    align-content: center !important;
+}
+
+.ui-datatable {
+    text-align: center;
+    align-content: center;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .input-search {
+        width: 100%;
+    }
+
+    .ui-card {
+        margin-left: 5% !important;
+        margin-right: 5% !important;
+    }
+
+    .row {
+        display: list-item;
+    }
+
+    .col {
+        margin-top: 5%;
+    }
+
+    .tarjeta {
+        width: 90% !important;
+    }
+
+    .ui-dialog {
+        width: 90% !important;
+        margin-left: -25%;
+    }
+
+    #carusel {
+        width: 90% !important;
+    }
+
+    .fotox {
+        margin-top: 50%;
+        margin-left: 270%;
+    }
+
+    .tarjetaUnica {
+        width: 90% !important;
+        margin: 5% !important;
+    }
+}

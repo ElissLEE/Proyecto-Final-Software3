@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xml:lang="en" lang="en">
+
+
+<ui:composition template="/WEB-INF/plantilla.xhtml">
+
+    <ui:define name="title">Recuperar Contraseña</ui:define>
+    <ui:define name="content">
+
+        <p:card styleClass="card"
+                style="margin-left: 30%; margin-right: 30%; margin-top: 2%; margin-bottom: 2%">
+            <f:facet name="title">
+                Recupera tu contraseña
+            </f:facet>
+
+            <div class="fotox" style="margin-left: 35%">
+                <img src="resources/img/contrasena.png" alt=""/>
+            </div>
+
+            <p>Por favor ingresa tu email para confirmar tu cuenta.</p>
+
+            <h:form>
+                <p:outputLabel for="email_usuario" value="Email:"/>
+                <p:inputText id="email_usuario" value="#{seguridadBean.email}" style="width: 100%"
+                             required="true"
+                             requiredMessage="Ups! olvidaste el email"/>
+                <br></br>
+                <br></br>
+
+                <p:outputLabel for="contrasenia_usuario" value="Nueva contraseña:"/>
+                <p:password id="contrasenia_usuario" value="#{seguridadBean.password}" feedback="true"
+                            promptLabel="Ingrese su nueva contraseña" weakLabel="Débil"
+                            goodLabel="Buena" strongLabel="Fuerte" redisplay="true" style="width: 100%"
+                            required="true"
+                            requiredMessage="Ups! olvidaste la contraseña"/>
+
+                <h:panelGrid columns="2" cellpadding="5" width="100%">
+                    <p:commandButton action="#{seguridadBean.cambiarPassword}" value="Confirmar"
+                                     update="@form"
+                                     style="width: 50%; margin-left: 25%; margin-top: 5%" />
+                    <p:button href="/index.xhtml" value="Volver"
+                              style="width: 65%; margin-left: 5px;margin-top: 5%"/>
+                    <p:growl showDetail="true"/>
+                </h:panelGrid>
+            </h:form>
+        </p:card>
+
+    </ui:define>
+</ui:composition>
+</html>

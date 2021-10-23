@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xml:lang="en" lang="en">
+
+<ui:composition template="/WEB-INF/plantilla.xhtml">
+
+    <ui:define name="head">
+    </ui:define>
+
+    <ui:define name="title">Libro | Registrar libro</ui:define>
+    <ui:define name="content">
+
+        <div class="row">
+
+
+            <div class="col">
+                <p:card  style="height: 330px;width: 90%; margin: 10%;text-align:center;margin-bottom: 2em" >
+                    <img src="resources/img/libro.png" alt=""/>
+                    <h6 style="margin-top: 15%">Image</h6>
+                </p:card>
+            </div>
+
+
+
+            <div class="col">
+                <h:form id="crear-libro">
+
+                    <p:card styleClass="tarjeta"
+                            style="margin-left: 8%; margin-right: 20%; margin-top: 10%; margin-bottom: 2%; width: 80%;">
+                        <f:facet name="title">
+                            <font color="#34495E" >¡Regístre un libro!</font>
+                        </f:facet>
+
+                        <h:panelGrid columns="2" cellpadding="3" width="100%">
+
+                            <p:outputLabel for="isbn_libro" value="Isbn:"/>
+                            <p:inputText id="isbn_libro" value="#{libroBean.libro.isbn}" style="width: 100%"
+                                         required="true"
+                                         requiredMessage="El isbn del libro es obligatorio"/>
+
+                            <p:outputLabel for="titulo_libro" value="Titulo:"/>
+                            <p:inputText id="titulo_libro" value="#{libroBean.libro.titulo}" style="width: 100%"
+                                         required="true"
+                                         requiredMessage="El nombre del libro es obligatorio"/>
+
+                            <p:outputLabel for="autor_libro" value="Autor:"/>
+                            <p:inputText id="autor_libro" value="#{libroBean.libro.autor}" style="width: 100%"
+                                         required="true"
+                                         requiredMessage="El nombre del libro es obligatorio"/>
+
+                            <p:outputLabel for="fecha_libro" value="Fecha:"/>
+                            <p:inputText id="fecha_libro"  style="width: 100%"
+                                        />
+
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" cellpadding="5" width="100%">
+
+                            <p:commandButton action="#{libroBean.registrarLibro}" value="Registrar" update="@form"
+                                             style="background: #34495E;width: 200px; margin-left: 15%;margin-top: 5%"/>
+
+                            <p:button href="/index.xhtml" value="Volver"
+                                      style="width: 200px; margin-left: 10%;margin-right: 15%;margin-top: 5%;background: #34495E"/>
+
+                        </h:panelGrid>
+
+                        <p:growl showDetail="true"/>
+                    </p:card>
+                </h:form>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>

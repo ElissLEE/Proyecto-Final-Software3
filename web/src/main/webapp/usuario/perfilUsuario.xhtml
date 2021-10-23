@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xml:lang="en" lang="en">
+
+
+<ui:composition template="/WEB-INF/plantilla.xhtml">
+
+    <ui:define name="title">Usuario | Perfil</ui:define>
+    <ui:define name="content">
+
+            <div style="margin: 2% 5%">
+                <h1>¡Hola!</h1>
+                <h2> #{usuarioBean.usuarioAux.nombre} </h2>
+                <p:divider></p:divider>
+                <h4>Email:  #{usuarioBean.usuarioAux.email} </h4>
+                <br></br>
+                <h4>Nickname:  #{usuarioBean.usuarioAux.nickname} </h4>
+                <br></br>
+                <h4>Ciudad:  #{usuarioBean.usuarioAux.ciudad.nombre} </h4>
+            </div>
+
+            <div class="card" style="margin: 2% 5%">
+                <h1 style="margin: 2% 5%">Comentarios que faltan por responder</h1>
+
+                <p:outputPanel id="sin_respuesta" style="margin: 2% 5%">
+
+                    <h:form id="form">
+
+                    <p:dataTable value="#{usuarioBean.comentariosSR}" var="comentario" id="sin_respuestaTable">
+
+                        <p:column headerText="Usuario">
+                            <h:outputText value="#{comentario.usuario.nombre}"/>
+                        </p:column>
+
+                        <p:column headerText="Comentario">
+                            <f:facet name="header">
+                                <h:outputText value="Comentario"/>
+                            </f:facet>
+                            <h:outputText value="#{comentario.comentario}"/>
+                        </p:column>
+
+                        <p:column headerText="Fecha">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha"/>
+                            </f:facet>
+                            <h:outputText value="#{comentario.fechaComentario}"/>
+                        </p:column>
+
+                        <p:column headerText="Responder">
+                            <p:commandButton action="#{usuarioBean.responder(comentario.id)}"
+                                             onclick="PF('dlg3').show()" update="favoritosTable"
+                                             icon="pi pi-send" styleClass="rounded-button ui-button-flat"/>
+                        </p:column>
+
+                        <p:column headerText="Eliminar">
+                            <p:commandButton action="#{usuarioBean.eliminarComentario(comentario.id)}"
+                                             icon="pi pi-trash" update="sin_respuestaTable,favoritosTable"
+                                             styleClass="rounded-button ui-button-flat"/>
+                        </p:column>
+                    </p:dataTable>
+                    </h:form>
+                </p:outputPanel>
+            </div>
+
+
+        <div class="card" style="margin: 2% 5%">
+            <h1 style="margin: 2% 5%">Estos son tus lugares favoritos </h1>
+
+            <p:outputPanel id="favoritos" style="margin: 2% 5%">
+                    <p:dataTable value="#{usuarioBean.lugaresFavoritosUsuario}" var="lugar" id="favoritosTable">
+                        <p:column headerText="Lugar">
+                            <h:outputText value="#{lugar.nombre}"/>
+                        </p:column>
+
+                        <p:column headerText="Descripción">
+                            <f:facet name="header">
+                                <h:outputText value="Descripción"/>
+                            </f:facet>
+                            <h:outputText value="#{lugar.descripcion}"/>
+                        </p:column>
+
+                        <p:column headerText="Fecha">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha"/>
+                            </f:facet>
+                            <h:outputText value="#{lugar.fechaCreacion}"/>
+                        </p:column>
+                    </p:dataTable>
+            </p:outputPanel>
+        </div>
+
+
+
+        <p:dialog id="dialogo" header="Respuesta" widgetVar="dlg3" Height="400px" width="40%" showEffect="fade"
+                  closeOnEscape="true">
+            <h:form>
+
+                <h5>Pon tu respuesta:</h5>
+                <p:inputTextarea value="#{usuarioBean.comentario.respuesta}" rows="3" cols="65"/>
+
+                <div style="margin-top: 5%;margin-left: 25%">
+                    <p:commandButton style="min-width: 30%" value="Responder"
+                                     action="#{usuarioBean.responderComentario}" onclick="PF('dlg3').hide()" update="form:sin_respuestaTable,favoritosTable"
+                                     styleClass="ui-button-raised ui-button-success ui-button-flat"
+                                     icon="pi pi-sign-in" iconPos="left"/>
+
+                    <p:commandButton style="min-width: 30%; margin-left: 5%" value="Cancelar"
+                                     styleClass="ui-button-raised ui-button-secondary ui-button-flat" update="@form"/>
+                    <p:growl showDetail="true"/>
+                </div>
+            </h:form>
+        </p:dialog>
+
+
+        <div style="margin: 2% 5%">
+            <h2>Tus lugares!</h2>
+            <h6>Estos son los lugares creados por tí</h6>
+            <p:carousel value="#{usuarioBean.lugaresUsuario}" var="lugar" responsive="true"
+                        itemStyle="text-align:center">
+                <div class="product">
+                    <div class="product-grid-item p-p-5">
+                        <div class="product-grid-item-top">
+                            <div class="product-name"><h2>#{lugar.nombre}</h2></div>
+                            <div>
+                                <i class="pi pi-map-marker product-category-icon"/>
+                                <span class="product-category">#{lugar.tipo.nombre}</span>
+                            </div>
+                        </div>
+                        <div class="product-grid-item-content" style="margin: 5%">
+                            <img src="/uploads/#{lugar.imagenPrincipal}" class="card-img-top" alt="..." height="300"/>
+                            <div class="product-description">#{lugar.descripcion}</div>
+                            <p:commandButton value="Ver detalle" action="#{inicioBean.irADetalle(lugar.id)}"
+                                             styleClass="ui-button-raised" icon="pi pi-arrow-right"
+                                             iconPos="right"/>
+                        </div>
+                    </div>
+                </div>
+            </p:carousel>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>
