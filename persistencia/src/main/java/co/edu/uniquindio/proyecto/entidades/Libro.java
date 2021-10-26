@@ -35,7 +35,6 @@ public class Libro implements Serializable {
 
     //================================= RELACION CON LA ENTIDAD ADMINISTRADOR =================================//
     @ManyToOne
-    @JoinColumn(nullable = false)
     private Administrador administrador;
 
     public Libro(int isbn, String titulo, Boolean estado, String autor, Date fechaPublicacion) {

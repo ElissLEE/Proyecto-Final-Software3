@@ -30,5 +30,9 @@ public class Administrador extends Persona implements Serializable {
     @JsonIgnore
     private List<Libro> libros;
 
-
+    //================================= RELACION CON LA ENTIDAD USUARIO =================================//
+    @OneToMany(mappedBy = "administrador")
+    @ToString.Exclude
+    @JsonIgnore
+    private List<Usuario> usuarios;
 }

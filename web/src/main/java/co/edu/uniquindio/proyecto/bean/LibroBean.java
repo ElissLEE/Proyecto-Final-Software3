@@ -1,16 +1,9 @@
 package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.*;
-import co.edu.uniquindio.proyecto.servicios.CiudadServicio;
 import co.edu.uniquindio.proyecto.servicios.LibroServicio;
-import co.edu.uniquindio.proyecto.servicios.MailService;
-import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.file.UploadedFile;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -18,12 +11,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -31,7 +20,6 @@ import java.util.List;
 public class LibroBean implements Serializable {
 
     private final LibroServicio libroServicio;
-    private final MailService mailService;
 
     @Getter
     @Setter
@@ -48,9 +36,8 @@ public class LibroBean implements Serializable {
     @Setter
     private ArrayList<String> dias;
 
-    public LibroBean(LibroServicio libroServicio, MailService mailService) {
+    public LibroBean(LibroServicio libroServicio) {
         this.libroServicio = libroServicio;
-        this.mailService = mailService;
     }
 
     @PostConstruct

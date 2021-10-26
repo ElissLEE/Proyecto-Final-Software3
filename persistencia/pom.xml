@@ -27,6 +27,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+            <dependency>
+                <groupId>software.aws.rds</groupId>
+                <artifactId>aws-mysql-jdbc</artifactId>
+                <version>0.2.0</version>
+            </dependency>
+
     </dependencies>
 
 

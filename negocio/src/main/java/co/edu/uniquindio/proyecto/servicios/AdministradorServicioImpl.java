@@ -98,6 +98,29 @@ public class AdministradorServicioImpl implements AdministradorServicio{
         return administrador.get();
     }
 
+
+    @Override
+    public void actualizar(String id,Administrador a){
+
+        try {
+            Administrador administradorEncontrado = obtenerAdministrador(id);
+
+            if (administradorEncontrado!=null){
+
+                administradorEncontrado.setNombre(a.getNombre());
+                administradorEncontrado.setPassword(a.getPassword());
+                administradorEncontrado.setTelefono(a.getTelefono());
+                administradorEncontrado.setEmail(a.getEmail());
+
+                administradorRepo.save(administradorEncontrado);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Override
     public List<Administrador> listarAdministradores() {
         return administradorRepo.findAll();

@@ -29,7 +29,7 @@ public class InformacionPorDefecto implements CommandLineRunner {
             // datos con los que se pueden ingresa
             // si ingresa con el admin le permite hacer todo
             // con los datos del ususario solo ingresa
-            
+
             Administrador admin1= new Administrador("1010017812","Melissa","304","meli123","mortiz@gmail.com");
             administradorServicio.registrarAdministrador(admin1);
 

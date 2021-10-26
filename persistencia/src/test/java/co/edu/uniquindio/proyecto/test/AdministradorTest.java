@@ -27,10 +27,9 @@ public class AdministradorTest {
         administradorNuevo.setNombre("Sebastian");
         administradorNuevo.setPassword("21quintero04");
         administradorNuevo.setEmail("@gmail.com");
+        administradorNuevo.setTelefono("3167127633");
 
         Administrador administradorGuardado= administradorRepo.save(administradorNuevo);
-
-        System.out.println(administradorGuardado.toString());
 
         Assertions.assertNotNull(administradorGuardado);
     }
@@ -44,6 +43,7 @@ public class AdministradorTest {
         administradorNuevo.setNombre("Sebastian");
         administradorNuevo.setPassword("21quintero04");
         administradorNuevo.setEmail("@gmail.com");
+        administradorNuevo.setTelefono("3167127633");
 
         administradorRepo.save(administradorNuevo);
 
@@ -63,6 +63,7 @@ public class AdministradorTest {
         administradorNuevo.setNombre("Sebastian");
         administradorNuevo.setPassword("21quintero04");
         administradorNuevo.setEmail("@gmail.com");
+        administradorNuevo.setTelefono("3167127633");
 
         Administrador administradorGuardado= administradorRepo.save(administradorNuevo);
 
@@ -70,8 +71,6 @@ public class AdministradorTest {
         administradorRepo.save(administradorGuardado);
 
         Administrador administradorBuscado= administradorRepo.findById("1193409775").orElse(null);
-
-        System.out.println(administradorBuscado.toString());
 
         Assertions.assertEquals("sebas@gmail.com",administradorBuscado.getEmail());
     }

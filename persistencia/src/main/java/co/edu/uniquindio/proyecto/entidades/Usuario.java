@@ -23,6 +23,9 @@ public class Usuario extends Persona implements Serializable {
     @JsonIgnore
     private Ciudad ciudad;
 
+    //================================= RELACION CON LA ENTIDAD ADMINISTRADOR =================================//
+    @ManyToOne
+    private Administrador administrador;
 
     //================================= CONSTRUCTOR  =================================//
     public Usuario(String id, String nombre,String telefono, String password, String email) {

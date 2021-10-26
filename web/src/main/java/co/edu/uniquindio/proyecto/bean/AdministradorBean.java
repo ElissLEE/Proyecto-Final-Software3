@@ -96,6 +96,7 @@ public class AdministradorBean implements Serializable {
 
             if (personaLogin != null) {
 
+                usuario.setAdministrador((Administrador) personaLogin);
                 usuarioServicio.registrarUsuario(usuario);
                 FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "¡Super! te registramos correctamente");
                 FacesContext.getCurrentInstance().addMessage("mensajePersonalizado", facesMsg);

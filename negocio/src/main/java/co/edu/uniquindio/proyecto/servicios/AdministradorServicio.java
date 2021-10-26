@@ -16,6 +16,8 @@ public interface AdministradorServicio {
 
     Administrador obtenerAdministradorEmail(String email) throws Exception;
 
+    void actualizar(String id,Administrador a);
+
     List<Administrador> listarAdministradores();
 
     Administrador obtenerEmailPassword(String email,String password) throws Exception;

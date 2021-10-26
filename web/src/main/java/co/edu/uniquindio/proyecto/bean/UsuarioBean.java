@@ -23,8 +23,6 @@ public class UsuarioBean implements Serializable {
     @Getter @Setter
     private CiudadServicio ciudadServicio;
 
-    @Autowired
-    private MailService mailService;
 
 
     @Value(value = "#{seguridadBean.persona}")
@@ -44,13 +42,5 @@ public class UsuarioBean implements Serializable {
     }
 
 
-    public void sendMailRespuesta(String respuesta,String email){
-
-        String subject = "En hora buena, alguien respondio tu comentario";
-        String message = respuesta;
-
-        mailService.sendMail("unilocal0804@gmail.com", email,subject,message);
-
-    }
 
 }

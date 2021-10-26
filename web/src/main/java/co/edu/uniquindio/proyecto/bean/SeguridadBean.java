@@ -3,7 +3,6 @@ package co.edu.uniquindio.proyecto.bean;
 import co.edu.uniquindio.proyecto.entidades.Administrador;
 import co.edu.uniquindio.proyecto.entidades.Persona;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
-import co.edu.uniquindio.proyecto.servicios.MailService;
 import co.edu.uniquindio.proyecto.servicios.PersonaServicio;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,8 +38,6 @@ public class SeguridadBean implements Serializable {
     @Getter @Setter
     private String rol;
 
-    @Autowired
-    private MailService mailService;
 
 
     public String iniciarSesion(){
@@ -85,7 +82,7 @@ public class SeguridadBean implements Serializable {
 
             if(personaAux!=null){
 
-                sendMail();
+
 
 
             }else{
@@ -127,14 +124,5 @@ public class SeguridadBean implements Serializable {
 
     }
 
-    public void sendMail() {
 
-        String subject = "Recuperacion de contraseña";
-        String url = "http://localhost:8080/recuperarContrasena.xhtml";
-        String message = "Cordial Saludo para recuperar su contraseña, de click en el siguiente enlace" + "\n" + url;
-
-        mailService.sendMail("meliortizmahone@gmail.com", personaAux.getEmail(), subject, message);
-        System.out.println("Correo enviado");
-
-    }
 }

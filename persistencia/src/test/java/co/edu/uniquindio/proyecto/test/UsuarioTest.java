@@ -35,12 +35,11 @@ public class UsuarioTest {
         usuarioNuevo.setNombre("Fernando");
         usuarioNuevo.setPassword("fercho123");
         usuarioNuevo.setEmail("@gmail.com");
+        usuarioNuevo.setTelefono("3167127633");
         usuarioNuevo.setCiudad(ciudadBuscada);
         ciudadBuscada.getUsuarios().add(usuarioNuevo);
 
         Usuario usuarioGuardado = usuarioRepo.save(usuarioNuevo);
-
-        System.out.println(usuarioGuardado.toString());
 
         Assertions.assertNotNull(usuarioGuardado);
     }
@@ -96,52 +95,13 @@ public class UsuarioTest {
 
     }
 
-    //================================= Metodo para validar un inicio de secion =================================//
+    //================================= Metodo para validar un inicio de sesion =================================//
     @Test
     @Sql("classpath:usuarios.sql")
-    public void iniciarSecionTest(){
+    public void iniciarSesionTest(){
         Usuario usuarioNuevo = usuarioRepo.findByEmailAndPassword("f@gmail.com","fer123") ;
 
         Assertions.assertNotNull(usuarioNuevo);
     }
 
-    //================================= Metodo para listar los usuarios ordenadamente =================================//
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void listarUsuariosPaginadosTest(){
-
-        List<Usuario> lista = usuarioRepo.findAll(Sort.by("nombre"));
-        for (Usuario usuarioNuevo:lista){
-            System.out.println(lista);
-        }
-    }
-
-
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void listarUsuariosDadoNombreTest(){
-
-        List<Usuario> lista = usuarioRepo.findByNombre("Manuela");
-        System.out.println(lista);
-    }
-
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void listarUsuariosPaginados2Test(){
-
-        List<Usuario> lista = usuarioRepo.obtenerUsuarios(PageRequest.of(0,2));
-        System.out.println(lista);
-    }
-
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void obtenerUsuariosCiudadTest(){
-
-        List<Usuario>usuarios=ciudadRepo.obtenerCiudadUsuario("Armenia");
-
-        for(Usuario u:usuarios){
-
-            System.out.println(u);
-        }
-    }
 }
